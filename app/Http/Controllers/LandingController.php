@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-class ReportsController extends Controller
+class LandingController extends Controller
 {
     public function __invoke()
     {
-        return Inertia::render('Reports/Index');
+        return Inertia::render('Landing/Index');
     }
 }

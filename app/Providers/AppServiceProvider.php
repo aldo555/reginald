@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Inertia\Inertia;
-use League\Glide\Server;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\UrlWindow;
@@ -25,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInertia();
-        $this->registerGlide();
         $this->registerLengthAwarePaginator();
     }
 
@@ -43,11 +41,6 @@ class AppServiceProvider extends ServiceProvider
                         'first_name' => Auth::user()->first_name,
                         'last_name' => Auth::user()->last_name,
                         'email' => Auth::user()->email,
-                        'role' => Auth::user()->role,
-                        'account' => [
-                            'id' => Auth::user()->account->id,
-                            'name' => Auth::user()->account->name,
-                        ],
                     ] : null,
                 ];
             },
@@ -62,18 +55,6 @@ class AppServiceProvider extends ServiceProvider
                     : (object) [];
             },
         ]);
-    }
-
-    protected function registerGlide()
-    {
-        $this->app->bind(Server::class, function ($app) {
-            return Server::create([
-                'source' => Storage::getDriver(),
-                'cache' => Storage::getDriver(),
-                'cache_folder' => '.glide-cache',
-                'base_url' => 'img',
-            ]);
-        });
     }
 
     protected function registerLengthAwarePaginator()
