@@ -1,5 +1,4 @@
-# Inertia Template
-*Made possible by Jonathan Reinink*
+# Reginald
 
 ## Installation
 
